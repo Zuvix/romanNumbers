@@ -11,13 +11,20 @@ roman_dict = {
 }
 
 def checkMoreThanThree(romanNumber):
-    key_list = list(roman_dict.keys())   
+    key_list = list(roman_dict.keys())
+
     for x in range(len(key_list)):
         sum = 0
+        maxSum = 1
+
+        if x%2 == 0:
+            maxSum = 3
+
         for element in romanNumber:
+           
             if element == key_list[x]:
                 sum+=1
-                if sum>3:
+                if sum>maxSum:
                     return False
             else: 
                 sum=0
@@ -60,8 +67,13 @@ def test6():
 
 def test7():
      assert convertToInt("IIII") == -9999, "Should be -9999" #Filip
+
 def test8():
      assert convertToInt("DD") == -9999, "Should be -9999" #Samo
+
+def test9():
+     assert convertToInt("IV") == 4, "Should be 4" #Samo
+
 test1()
 test2()
 test3()
@@ -70,3 +82,4 @@ test5()
 test6()
 test7()
 test8()
+test9()
