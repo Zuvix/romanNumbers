@@ -9,6 +9,7 @@ roman_dict = {
     "D": 500,
     "M": 1000
 }
+
 def checkMoreThanThree(romanNumber):
     key_list = list(roman_dict.keys())   
     for x in range(len(key_list)):
@@ -59,11 +60,13 @@ def test6():
 
 def test7():
      assert convertToInt("IIII") == -9999, "Should be -9999" #Filip
-
+def test8():
+     assert convertToInt("DD") == -9999, "Should be -9999" #Samo
 test1()
 test2()
 test3()
 test4()
 test5()
 test6()
-test7() 
+test7()
+test8()
