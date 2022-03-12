@@ -1,6 +1,5 @@
-from operator import truediv
 import unittest
-
+# MADE by Filip Novak and Samuel Kubala
 roman_dict = {
     "I": 1,
     "V": 5,
@@ -11,6 +10,7 @@ roman_dict = {
     "M": 1000
 }
 
+#Function to chceck if there is a forbiden repetition of characters
 def checkMoreThanThree(romanNumber):
     key_list = list(roman_dict.keys())
 
@@ -31,12 +31,14 @@ def checkMoreThanThree(romanNumber):
                 sum=0
     return True
 
+#Check for invalid characters
 def validateRomanElements(romanNumber):
     for element in romanNumber:
         if not (element in roman_dict):
             return False
     return True
 
+#Main function to covert roman to INT
 def convertToInt(romanNumber):
     if validateRomanElements(romanNumber) == False:
         return -9999
@@ -76,14 +78,12 @@ def convertToInt(romanNumber):
 
         sum += roman_dict[element]
         prevElem = element
-        i += 1
- 
  
     if sum > 3999:
         return -9999
     return sum
 
-
+#TEST FUNCTIONS
 def test1():
     assert convertToInt("I") == 1, "Should be 1" #Filip
    
@@ -128,6 +128,11 @@ def test14():
 
 def test15():
     assert convertToInt("MXXXIV") == 1034, "Should be 1034" #Filip
+
+def test16():
+    assert convertToInt("MCMLXXXVIII") == 1988, "Should be 1988" #Filip
+
+#RUN TESTS
 
 test1()
 test2()
