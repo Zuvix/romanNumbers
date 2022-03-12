@@ -1,3 +1,4 @@
+from operator import truediv
 import unittest
 
 roman_dict = {
@@ -46,6 +47,7 @@ def convertToInt(romanNumber):
     i = 0
     sum = 0
     prevElem = romanNumber[0]
+    repetition = False
 
     for element in romanNumber:
         if i == 0: 
@@ -62,7 +64,11 @@ def convertToInt(romanNumber):
                 return -9999
             if prevElem == 'C' and not (element in ['D',"M"]):
                 return -9999
+            if repetition:
+                return -9999
             sum -= 2*roman_dict[prevElem]
+        elif element == prevElem:
+            repetition = True
 
         sum += roman_dict[element]
         prevElem = element
@@ -116,6 +122,9 @@ def test13():
 def test14():
     assert convertToInt("IIV") == -9999, "Should be -9999" #Samo
 
+def test15():
+    assert convertToInt("MXXXIV") == 1034, "Should be 1034" #Filip
+
 test1()
 test2()
 test3()
@@ -130,3 +139,4 @@ test11()
 test12()
 test13()
 test14()
+test15()
