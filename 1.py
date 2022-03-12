@@ -23,8 +23,8 @@ def checkMoreThanThree(romanNumber):
         for element in romanNumber:
            
             if element == key_list[x]:
-                sum+=1
-                if sum>maxSum:
+                sum += 1
+                if sum > maxSum:
                     return False
             else: 
                 sum=0
@@ -45,24 +45,29 @@ def convertToInt(romanNumber):
 
     i = 0
     sum = 0
-    prevElem=romanNumber[0]
+    prevElem = romanNumber[0]
 
     for element in romanNumber:
         if i == 0: 
             sum += roman_dict[element]
-            i+=1
+            i += 1
             continue
-        if roman_dict[element] > roman_dict[prevElem]:
-            sum-=2*roman_dict[prevElem]
-        sum+=roman_dict[element]
-        prevElem=element
-        i+=1
- 
 
+        if roman_dict[element] > roman_dict[prevElem]:
+            if prevElem in ["V", "L", "D"]:
+                return -9999
+
+            sum -= 2*roman_dict[prevElem]
+
+        sum += roman_dict[element]
+        prevElem = element
+        i += 1
+ 
 
     if sum > 3999:
         return -9999
     return sum
+
 
 def test1():
     assert convertToInt("I") == 1, "Should be 1" #Filip
@@ -83,13 +88,25 @@ def test6():
     assert convertToInt("MMMM") == -9999, "Should be -9999" #Samo
 
 def test7():
-     assert convertToInt("IIII") == -9999, "Should be -9999" #Filip
+    assert convertToInt("IIII") == -9999, "Should be -9999" #Filip
 
 def test8():
-     assert convertToInt("DD") == -9999, "Should be -9999" #Samo
+    assert convertToInt("DD") == -9999, "Should be -9999" #Samo
 
 def test9():
-     assert convertToInt("IV") == 4, "Should be 4" #Filip
+    assert convertToInt("IV") == 4, "Should be 4" #Filip
+
+def test10():
+    assert convertToInt("VX") == -9999, "Should be -9999" #Samo
+
+def test11():
+    assert convertToInt("LC") == -9999, "Should be -9999" #Filip
+
+def test12():
+    assert convertToInt("DM") == -9999, "Should be -9999" #Samo
+
+def test13():
+    assert convertToInt("IL") == -9999, "Should be -9999" #Filip
 
 test1()
 test2()
@@ -100,3 +117,7 @@ test6()
 test7()
 test8()
 test9()
+test10()
+test11()
+test12()
+test13()
