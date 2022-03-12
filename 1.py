@@ -1,17 +1,33 @@
 import unittest
 
 roman_dict = {
-        "I": 1,
-        "V": 5,
-        "X": 10,
-        "L": 50,
-        "C": 100,
-        "D": 500,
-        "M": 1000
+    "I": 1,
+    "V": 5,
+    "X": 10,
+    "L": 50,
+    "C": 100,
+    "D": 500,
+    "M": 1000
 }
+def checkMoreThanThree(romanNumber):
+    key_list = list(roman_dict.keys())   
+    for x in range(len(key_list)):
+        sum = 0
+        for element in romanNumber:
+            if element == key_list[x]:
+                sum+=1
+                if sum>3:
+                    return False
+            else: 
+                sum=0
+    return True
+
 
 def convertToInt(romanNumber):
     sum = 0
+    if checkMoreThanThree(romanNumber) == False:
+        return -9999
+        
     for element in romanNumber:
         if element in roman_dict:
             sum += roman_dict[element]
