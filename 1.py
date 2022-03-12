@@ -67,14 +67,18 @@ def convertToInt(romanNumber):
             if repetition:
                 return -9999
             sum -= 2*roman_dict[prevElem]
+
         elif element == prevElem:
             repetition = True
+
+        elif (roman_dict[element] < roman_dict[prevElem]) and repetition:
+            repetition = False
 
         sum += roman_dict[element]
         prevElem = element
         i += 1
  
-
+ 
     if sum > 3999:
         return -9999
     return sum
