@@ -56,7 +56,12 @@ def convertToInt(romanNumber):
         if roman_dict[element] > roman_dict[prevElem]:
             if prevElem in ["V", "L", "D"]:
                 return -9999
-
+            if prevElem == 'I' and not (element in ['V',"X"]):
+                return -9999
+            if prevElem == 'X' and not (element in ['L',"C"]):
+                return -9999
+            if prevElem == 'C' and not (element in ['D',"M"]):
+                return -9999
             sum -= 2*roman_dict[prevElem]
 
         sum += roman_dict[element]
@@ -108,6 +113,9 @@ def test12():
 def test13():
     assert convertToInt("IL") == -9999, "Should be -9999" #Filip
 
+def test14():
+    assert convertToInt("IIV") == -9999, "Should be -9999" #Samo
+
 test1()
 test2()
 test3()
@@ -121,3 +129,4 @@ test10()
 test11()
 test12()
 test13()
+test14()
