@@ -30,21 +30,38 @@ def checkMoreThanThree(romanNumber):
                 sum=0
     return True
 
+def validateRomanElements(romanNumber):
+    for element in romanNumber:
+        if not (element in roman_dict):
+            return False
+    return True
 
 def convertToInt(romanNumber):
-    sum = 0
+    if validateRomanElements(romanNumber) == False:
+        return -9999
+    
     if checkMoreThanThree(romanNumber) == False:
         return -9999
-        
+
+    i = 0
+    sum = 0
+    prevElem=romanNumber[0]
+
     for element in romanNumber:
-        if element in roman_dict:
+        if i == 0: 
             sum += roman_dict[element]
-        else: 
-            return -9999
-    
+            i+=1
+            continue
+        if roman_dict[element] > roman_dict[prevElem]:
+            sum-=2*roman_dict[prevElem]
+        sum+=roman_dict[element]
+        prevElem=element
+        i+=1
+ 
+
+
     if sum > 3999:
         return -9999
-
     return sum
 
 def test1():
@@ -72,7 +89,7 @@ def test8():
      assert convertToInt("DD") == -9999, "Should be -9999" #Samo
 
 def test9():
-     assert convertToInt("IV") == 4, "Should be 4" #Samo
+     assert convertToInt("IV") == 4, "Should be 4" #Filip
 
 test1()
 test2()
