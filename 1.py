@@ -102,7 +102,7 @@ def convertToInt(romanNumber):
             if roman_dict[max] < roman_dict[element]:
                 max = element
 
-            usedNumbers_list.extend([prevElem, element])
+            usedNumbers_list.append(element)
             sum -= 2 * roman_dict[prevElem]
 
         elif prevElem == element:
@@ -182,6 +182,9 @@ def test20():
 def test21():
     assert convertToInt("DCM") == -9999, "Test21, should be -9999"
 
+def test22():
+    assert convertToInt("XCIX") == 99, "Test22, should be 99"
+
 #RUN TESTS
 test1()
 test2()
@@ -204,3 +207,4 @@ test18()
 test19()
 test20()
 test21()
+test22()
