@@ -8,17 +8,17 @@ Row with id 788 has invalid number of answers. We are removing it from further a
 Row with id 999 has invalid number of answers. We are removing it from further analysis.
 
 Looking for invalid answers:
-There is an value error in row  162
-There is an value error in row  170
-There is an value error in row  328
-There is an value error in row  653
-There is an value error in row  25
-There is an value error in row  160
-There is an value error in row  350
-There is an value error in row  752
-There is an value error in row  768
-There is an value error in row  929
-There is an value error in row  1137
-There is an value error in row  643
-There is an value error in row  954
+There is an value error in row 162, in question 4 the answer "x" is wrong.
+There is an value error in row 170, in question 3 the answer "-1" is wrong.
+There is an value error in row 328, in question 1 the answer "" is wrong.
+There is an value error in row 653, in question 9 the answer "8" is wrong.
+There is an value error in row 25, in question 16 the answer "" is wrong.
+There is an value error in row 160, in question 13 the answer "9.9" is wrong.
+There is an value error in row 350, in question 16 the answer "" is wrong.
+There is an value error in row 752, in question 11 the answer "" is wrong.
+There is an value error in row 768, in question 16 the answer "5" is wrong.
+There is an value error in row 929, in question 17 the answer "" is wrong.
+There is an value error in row 1137, in question 27 the answer "6" is wrong.
+There is an value error in row 643, in question 36 the answer "7s" is wrong.
+There is an value error in row 954, in question 36 the answer "7." is wrong.
 

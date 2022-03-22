@@ -33,11 +33,11 @@ def checkValidData(data, startIndex, endIndex, acceptedValues):
             isValid=True
             if row[d].isdigit():
                 if not(row[d] in acceptedValues):
-                    isValid=False
+                    isValid=False                   
             else:
                 isValid=False
             if isValid==False:
-                print("There is an value error in row ",row[0])
+                print("There is an value error in row {}, in question {} the answer \"{}\" is wrong.".format(row[0],d,row[d]))
                 break
                 
 
@@ -48,7 +48,7 @@ def validateData(data):
     checkValidData(data, 22,22,["0","1","2","3","4","5","9"])
     checkValidData(data, 23,27,["0","1","2","3","4","9"])
     checkValidData(data, 28,36,["0","1","2","3","4","5","6","7","9"])
-   
+
 
 data = loadFile()
 original_stdout = sys.stdout
