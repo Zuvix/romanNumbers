@@ -1,0 +1,24 @@
+List of errors found in the dataset:
+Missing records:
+Record with index 771 is missing from dataset.
+Record with index 1071 is missing from dataset.
+
+Checking if there is correct count of answers in one row:
+Row with id 788 has invalid number of answers. We are removing it from further analysis.
+Row with id 999 has invalid number of answers. We are removing it from further analysis.
+
+Looking for invalid answers:
+There is an value error in row  162
+There is an value error in row  170
+There is an value error in row  328
+There is an value error in row  653
+There is an value error in row  25
+There is an value error in row  160
+There is an value error in row  350
+There is an value error in row  752
+There is an value error in row  768
+There is an value error in row  929
+There is an value error in row  1137
+There is an value error in row  643
+There is an value error in row  954
+
