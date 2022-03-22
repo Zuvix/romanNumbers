@@ -54,7 +54,7 @@ data = loadFile()
 original_stdout = sys.stdout
 with open('error_log.txt', 'w') as f:
     sys.stdout = f
-    print("List of errors found in the dataset:")
+    print("List of errors found in the dataset")
     print("Missing records:")
     checkMissingIndexes(data)
     print("")

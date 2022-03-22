@@ -1,4 +1,4 @@
-List of errors found in the dataset:
+List of errors found in the dataset
 Missing records:
 Record with index 771 is missing from dataset.
 Record with index 1071 is missing from dataset.
