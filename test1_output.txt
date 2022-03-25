@@ -1,2 +1,8 @@
-Record with index 3 is missing from dataset.
-There is a record with non-digit index "L".
+There is a record with non-integer index "L".
+There is a record with non-integer index "".
+There is a record with index out of bounds "99".
+Index 3 is missing from file.
+Index 5 is missing from file.
+Index 7 has multiple occurences.
+Index 11 is missing from file.
+Index 12 is missing from file.

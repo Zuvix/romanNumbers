@@ -7,7 +7,18 @@ from contextlib import redirect_stdout
 def loadFile(inputFile):
     with open(inputFile) as f:
         data = f.readlines()
+        if data[len(data)-1] in ['\n', '\r\n']:
+            data.remove(data[len(data)-1])
         return data
+
+
+def is_integer(n):
+    try:
+        float(n)
+    except ValueError:
+        return False
+    else:
+        return float(n).is_integer()
 
 
 def loadOutputString(outputFile):
@@ -31,18 +42,29 @@ def check_responses_len(wantedLen, data):
 
 def checkIndexesErrors(data):
     current_index = 1
-    used_indexes = []
+    used_indexes = {}
+
+    for i in range(1, len(data)):
+        used_indexes[i] = 0
     for i in range(1, len(data)):
         row = data[i].split(";")
-        if row[0].isdigit():
-            if current_index != int(row[0]):
-                print("Record with index {} is missing from dataset.".format(
-                    current_index))
-                current_index += 1
-            current_index += 1
+        if is_integer(row[0]):
+            index = int(row[0])
+            if index < 0:
+                print("There is a record with negative index \"{}\".".format(index))
+                continue
+            if index >= len(data):
+                print("There is a record with index out of bounds \"{}\".".format(index))
+                continue
+            used_indexes[index] += 1
         else:
-            print("There is a record with non-digit index \"{}\".".format(
+            print("There is a record with non-integer index \"{}\".".format(
                 row[0]))
+    for i in range(1, len(data)):
+        if(used_indexes[i] < 1):
+            print("Index {} is missing from file.".format(i))
+        elif used_indexes[i] > 1:
+            print("Index {} has multiple occurences.".format(i))
 
 
 def checkValidData(data, startIndex, endIndex, acceptedValues):
