@@ -1,0 +1,2 @@
+Record with index 3 is missing from dataset.
+There is a record with non-digit index "L".
