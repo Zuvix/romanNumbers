@@ -1,10 +1,9 @@
 import sys
 import unittest
 import io
-from contextlib import redirect_stdout
 
 
-def loadFile(inputFile):
+def load_file(inputFile):
     with open(inputFile) as f:
         data = f.readlines()
         if data[len(data)-1] in ['\n', '\r\n']:
@@ -21,27 +20,33 @@ def is_integer(n):
         return float(n).is_integer()
 
 
-def loadOutputString(outputFile):
+# We uses this function to load output file for testing in a single string.
+def load_output_string(outputFile):
     with open(outputFile, 'r') as file:
         output = file.read()
         return output
 
 
-def check_responses_len(wantedLen, data):
+# This function chcecks if there is correct count of answers in every row.
+def check_responses_len(data):
     error_lines = []
+    wantedLen = data[0].count(';')
     for i in range(1, len(data)):
         if(data[i].count(';') != wantedLen):
             row = data[i].split(";")
-            if row[0].isdigit():
+            if is_integer(row[0]):
                 print(
                     "Row with id {} has invalid number of answers. We are removing it from further analysis.".format(row[0]))
+            else:
+                print(
+                    "There is a row without correct index and with missing records.")
             error_lines.append(i)
 
     return error_lines
 
 
-def checkIndexesErrors(data):
-    current_index = 1
+# We check if there are correct indexes
+def chech_indexes_errors(data):
     used_indexes = {}
 
     for i in range(1, len(data)):
@@ -67,7 +72,8 @@ def checkIndexesErrors(data):
             print("Index {} has multiple occurences.".format(i))
 
 
-def checkValidData(data, startIndex, endIndex, acceptedValues):
+# We chceck if the answers are within correct interval.
+def check_valid_data(data, startIndex, endIndex, acceptedValues):
     for i in range(1, len(data)):
         row = data[i].split(";")
         row = list(map(str.strip, row))
@@ -84,34 +90,39 @@ def checkValidData(data, startIndex, endIndex, acceptedValues):
                 break
 
 
-def validateData(data):
-    checkValidData(data, 1, 9, ["0", "1", "2", "3", "4", "5", "6", "7", "9"])
-    checkValidData(data, 10, 20, ["0", "1", "2", "3", "4", "9"])
-    checkValidData(data, 21, 21, ["0", "1", "2", "3", "4", "5", "6", "7", "9"])
-    checkValidData(data, 22, 22, ["0", "1", "2", "3", "4", "5", "9"])
-    checkValidData(data, 23, 27, ["0", "1", "2", "3", "4", "9"])
-    checkValidData(data, 28, 36, ["0", "1", "2", "3", "4", "5", "6", "7", "9"])
+# We call previous function specifically for this dataset
+def validate_data(data):
+    check_valid_data(data, 1, 9, ["0", "1", "2", "3", "4", "5", "6", "7", "9"])
+    check_valid_data(data, 10, 20, ["0", "1", "2", "3", "4", "9"])
+    check_valid_data(
+        data, 21, 21, ["0", "1", "2", "3", "4", "5", "6", "7", "9"])
+    check_valid_data(data, 22, 22, ["0", "1", "2", "3", "4", "5", "9"])
+    check_valid_data(data, 23, 27, ["0", "1", "2", "3", "4", "9"])
+    check_valid_data(
+        data, 28, 36, ["0", "1", "2", "3", "4", "5", "6", "7", "9"])
 
 
-data = loadFile('suborDat.csv')
+# The main section for error logging
+data = load_file('suborDat.csv')
 original_stdout = sys.stdout
 with open('error_log.txt', 'w') as f:
     sys.stdout = f
     print("List of errors found in the dataset")
     print("Missing records:")
-    checkIndexesErrors(data)
+    chech_indexes_errors(data)
     print("")
     print("Checking if there is correct count of answers in one row:")
-    error_lines = check_responses_len(36, data)
+    error_lines = check_responses_len(data)
     for x in reversed(error_lines):
         data.remove(data[x])
     print("")
     print("Looking for invalid answers:")
-    validateData(data)
+    validate_data(data)
     print("")
     sys.stdout = original_stdout
 
 
+# Testing section
 class TestQuizDataMethods(unittest.TestCase):
 
     def setUp(self):
@@ -127,24 +138,29 @@ class TestQuizDataMethods(unittest.TestCase):
         self.assertEqual(self.capturedOutput.getvalue(), 'Hello\n')
         self.reset()
 
-    def test_one_missing_index(self):
-        input = loadFile("test1_input.txt")
-        output = loadOutputString("test1_output.txt")
-        checkIndexesErrors(input)
+    def test_indexes_correction(self):
+        input = load_file("test1_input.txt")
+        output = load_output_string("test1_output.txt")
+        chech_indexes_errors(input)
         self.assertEqual(self.capturedOutput.getvalue(), output)
         self.reset()
 
-    def test_isupper(self):
-        self.assertTrue('FOO'.isupper())
-        self.assertFalse('Foo'.isupper())
+    def test_data_row_len(self):
+        input = load_file("test2_input.txt")
+        output = load_output_string("test2_output.txt")
+        check_responses_len(input)
+        self.assertEqual(self.capturedOutput.getvalue(), output)
+        self.reset()
 
-    def test_split(self):
-        s = 'hello world'
-        self.assertEqual(s.split(), ['hello', 'world'])
-        # check that s.split fails when the separator is not a string
-        with self.assertRaises(TypeError):
-            s.split(2)
+    def test_validate_data(self):
+        input = load_file("test3_input.txt")
+        output = load_output_string("test3_output.txt")
+        self.maxDiff = None
+        validate_data(input)
+        self.assertEqual(self.capturedOutput.getvalue(), output)
+        self.reset()
 
 
+# Run tests
 if __name__ == '__main__':
     unittest.main()
