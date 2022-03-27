@@ -133,6 +133,7 @@ class TestQuizDataMethods(unittest.TestCase):
         self.capturedOutput.truncate(0)
         self.capturedOutput.seek(0)
 
+    # We test if the setup is working
     def test_setup(self):
         print("Hello")
         self.assertEqual(self.capturedOutput.getvalue(), 'Hello\n')
