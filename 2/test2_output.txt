@@ -1,3 +1,3 @@
-There is a row without correct index and with missing records.
+There is a row without correct index and with invalid number of answers. We are removing it from further analysis.
 Row with id 4 has invalid number of answers. We are removing it from further analysis.
 Row with id 5 has invalid number of answers. We are removing it from further analysis.
