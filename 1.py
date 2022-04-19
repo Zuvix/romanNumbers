@@ -293,6 +293,7 @@ def test25():
 def test26():
     assert convertToInt("XXXVIX") == -9999, "Test26 should be -9999"
 
+
 def test27():
     assert convertToInt("DCD") == -9999, "Test27 should be -9999"
 
