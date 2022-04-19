@@ -14,7 +14,7 @@ roman_dict = {
 
 
 # Function to check if there is a forbidden repetition of characters or bad count of characters
-def checkMoreThanThree(romanNumber):
+def check_more_than_three_consecutive_chars(romanNumber):
     key_list = list(roman_dict.keys())
 
     for x in range(len(key_list)):
@@ -33,6 +33,27 @@ def checkMoreThanThree(romanNumber):
             else:
                 sum = 0
     return True
+
+def check_max_count_per_char(romanNumber):
+    roman_count_dict = {
+        "I": 3,
+        "V": 1,
+        "X": 4,
+        "L": 1,
+        "C": 4,
+        "D": 1,
+        "M": 4
+    }
+
+    for element in romanNumber:
+        roman_count_dict[element] -= 1
+
+        if roman_count_dict[element] < 0:
+            return False
+    
+    return True
+
+    
 
 
 # Check for invalid characters
@@ -65,6 +86,9 @@ def correctNumberOrder(element, max, usedNumbers_list):
 
 # Main function to convert roman to INT
 def convertToInt(romanNumber):
+    if str != type(romanNumber):
+        return -9999
+
     romanNumber = romanNumber.strip()  # remove leading and trailing whitespaces
 
     if len(romanNumber) == 0:
@@ -73,7 +97,13 @@ def convertToInt(romanNumber):
     if validateRomanElements(romanNumber) == False:
         return -9999
 
-    if checkMoreThanThree(romanNumber) == False:
+    if check_max_count_per_char(romanNumber) == False:
+        return -9999
+
+    if check_more_than_three_consecutive_chars(romanNumber) == False:
+        return -9999
+
+    if check_actual_max_number(romanNumber) == False:
         return -9999
 
     i = 0
@@ -131,14 +161,32 @@ def convertToInt(romanNumber):
 def check_actual_max_number(romanNumber):
     max_value = 1000
     for i in range(0, len(romanNumber)):
+        current_element = romanNumber[i]
         next_element = ""
         if(i+1 < len(romanNumber)):
             next_element = romanNumber[i+1]
-        if roman_dict[romanNumber[i]] > max_value:
-            return -9999
-        if roman_dict[romanNumber[i]] < max_value:
+        if roman_dict[current_element] > max_value:
+            return False
+        if roman_dict[current_element] < max_value:
             # check if the next value is substractible canSubstract funkciu sprav
-            max_value = roman_dict[romanNumber[i]]
+            if not can_subtract(current_element, next_element):
+                max_value = roman_dict[current_element]
+    return True
+
+def can_subtract(current, next):
+    if next == "":
+        return False
+    if roman_dict[current] < roman_dict[next]:
+        if current in ["V", "L", "D"]:
+            return False
+        if current == "I" and (next in ["V", "X"]):
+            return True
+        if current == "X" and (next in ["L", "C"]):
+            return True
+        if current == "C" and (next in ["D", "M"]):
+            return True
+        
+    return False
 
 
 # TEST FUNCTIONS
@@ -248,6 +296,9 @@ def test26():
 def test27():
     assert convertToInt("DCD") == -9999, "Test27 should be -9999"
 
+def test28():
+    assert convertToInt(None) == -9999, "Test28 should be -9999"
+
 
 # RUN TESTS
 test1()
@@ -277,3 +328,4 @@ test24()
 test25()
 test26()
 test27()
+test28()
