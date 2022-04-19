@@ -34,6 +34,7 @@ def check_more_than_three_consecutive_chars(romanNumber):
                 sum = 0
     return True
 
+
 def check_max_count_per_char(romanNumber):
     roman_count_dict = {
         "I": 3,
@@ -50,14 +51,12 @@ def check_max_count_per_char(romanNumber):
 
         if roman_count_dict[element] < 0:
             return False
-    
-    return True
 
-    
+    return True
 
 
 # Check for invalid characters
-def validateRomanElements(romanNumber):
+def validate_roman_elements(romanNumber):
     for element in romanNumber:
         if not (element in roman_dict):
             return False
@@ -65,7 +64,7 @@ def validateRomanElements(romanNumber):
 
 
 # Check if number is in correct order
-def correctNumberOrder(element, max, usedNumbers_list):
+def correct_num_order(element, max, usedNumbers_list):
     for item in usedNumbers_list:
         if roman_dict[element] >= roman_dict[item]:
             return False
@@ -85,7 +84,7 @@ def correctNumberOrder(element, max, usedNumbers_list):
 
 
 # Main function to convert roman to INT
-def convertToInt(romanNumber):
+def convert_to_int(romanNumber):
     if str != type(romanNumber):
         return -9999
 
@@ -94,7 +93,7 @@ def convertToInt(romanNumber):
     if len(romanNumber) == 0:
         return -9999
 
-    if validateRomanElements(romanNumber) == False:
+    if validate_roman_elements(romanNumber) == False:
         return -9999
 
     if check_max_count_per_char(romanNumber) == False:
@@ -121,7 +120,7 @@ def convertToInt(romanNumber):
             i += 1
             continue
 
-        if correctNumberOrder(element, max, usedNumbers_list) == False:
+        if correct_num_order(element, max, usedNumbers_list) == False:
             return -9999
 
         if roman_dict[prevElem] < roman_dict[element]:
@@ -173,6 +172,7 @@ def check_actual_max_number(romanNumber):
                 max_value = roman_dict[current_element]
     return True
 
+
 def can_subtract(current, next):
     if next == "":
         return False
@@ -185,120 +185,121 @@ def can_subtract(current, next):
             return True
         if current == "C" and (next in ["D", "M"]):
             return True
-        
+
     return False
 
 
 # TEST FUNCTIONS
 def test1():
-    assert convertToInt("I") == 1, "Test1, should be 1"
+    assert convert_to_int("I") == 1, "Test1, should be 1"
 
 
 def test2():
-    assert convertToInt("V") == 5, "Test2, should be 5"
+    assert convert_to_int("V") == 5, "Test2, should be 5"
 
 
 def test3():
-    assert convertToInt("-I") == -9999, "Test3, should be -9999"
+    assert convert_to_int("-I") == -9999, "Test3, should be -9999"
 
 
 def test4():
-    assert convertToInt("X") == 10, "Test4, should be 10"
+    assert convert_to_int("X") == 10, "Test4, should be 10"
 
 
 def test5():
-    assert convertToInt("III") == 3, "Test5, should be 3"
+    assert convert_to_int("III") == 3, "Test5, should be 3"
 
 
 def test6():
-    assert convertToInt("MMMM") == -9999, "Test6, should be -9999"
+    assert convert_to_int("MMMM") == -9999, "Test6, should be -9999"
 
 
 def test7():
-    assert convertToInt("IIII") == -9999, "Test7, should be -9999"
+    assert convert_to_int("IIII") == -9999, "Test7, should be -9999"
 
 
 def test8():
-    assert convertToInt("DD") == -9999, "Test8, should be -9999"
+    assert convert_to_int("DD") == -9999, "Test8, should be -9999"
 
 
 def test9():
-    assert convertToInt("IV") == 4, "Test9, should be 4"
+    assert convert_to_int("IV") == 4, "Test9, should be 4"
 
 
 def test10():
-    assert convertToInt("VX") == -9999, "Test10, should be -9999"
+    assert convert_to_int("VX") == -9999, "Test10, should be -9999"
 
 
 def test11():
-    assert convertToInt("LC") == -9999, "Test11, should be -9999"
+    assert convert_to_int("LC") == -9999, "Test11, should be -9999"
 
 
 def test12():
-    assert convertToInt("DM") == -9999, "Test12, should be -9999"
+    assert convert_to_int("DM") == -9999, "Test12, should be -9999"
 
 
 def test13():
-    assert convertToInt("IL") == -9999, "Test13, should be -9999"
+    assert convert_to_int("IL") == -9999, "Test13, should be -9999"
 
 
 def test14():
-    assert convertToInt("IIV") == -9999, "Test14, should be -9999"
+    assert convert_to_int("IIV") == -9999, "Test14, should be -9999"
 
 
 def test15():
-    assert convertToInt("MXXXIV") == 1034, "Test15, should be 1034"
+    assert convert_to_int("MXXXIV") == 1034, "Test15, should be 1034"
 
 
 def test16():
-    assert convertToInt("MCMLXXXVIII") == 1988, "Test16, should be 1988"
+    assert convert_to_int("MCMLXXXVIII") == 1988, "Test16, should be 1988"
 
 
 def test17():
-    assert convertToInt("") == -9999, "Test17, should be -9999"
+    assert convert_to_int("") == -9999, "Test17, should be -9999"
 
 
 def test18():
-    assert convertToInt("  CXIX ") == 119, "Test18, should be 119"
+    assert convert_to_int("  CXIX ") == 119, "Test18, should be 119"
 
 
 def test19():
-    assert convertToInt("CMCM") == -9999, "Test19, should be -9999"
+    assert convert_to_int("CMCM") == -9999, "Test19, should be -9999"
 
 
 def test20():
-    assert convertToInt("CMM") == -9999, "Test20, should be -9999"
+    assert convert_to_int("CMM") == -9999, "Test20, should be -9999"
 
 
 def test21():
-    assert convertToInt("DCM") == -9999, "Test21, should be -9999"
+    assert convert_to_int("DCM") == -9999, "Test21, should be -9999"
 
 
 def test22():
-    assert convertToInt("XCIX") == 99, "Test22, should be 99"
+    assert convert_to_int("XCIX") == 99, "Test22, should be 99"
 
 
 def test23():
-    assert convertToInt("MMMCM") == 3900, "Test23 should be 3900"
+    assert convert_to_int("MMMCM") == 3900, "Test23 should be 3900"
 
 
 def test24():
-    assert convertToInt("CDC") == -9999, "Test24 should be -9999"
+    assert convert_to_int("CDC") == -9999, "Test24 should be -9999"
 
 
 def test25():
-    assert convertToInt("IXIV") == -9999, "Test25 should be -9999"
+    assert convert_to_int("IXIV") == -9999, "Test25 should be -9999"
 
 
 def test26():
-    assert convertToInt("XXXVIX") == -9999, "Test26 should be -9999"
+    assert convert_to_int("XXXVIX") == -9999, "Test26 should be -9999"
 
 
 def test27():
-    assert convertToInt("DCD") == -9999, "Test27 should be -9999"
+    assert convert_to_int("DCD") == -9999, "Test27 should be -9999"
+
 
 def test28():
-    assert convertToInt(None) == -9999, "Test28 should be -9999"
+    assert convert_to_int(None) == -9999, "Test28 should be -9999"
 
 
 # RUN TESTS
