@@ -1,3 +1,4 @@
+import math
 import unittest
 # MADE by Filip Novak and Samuel Kubala
 # WINNER -> Filip Novak
@@ -83,6 +84,38 @@ def correct_num_order(element, max, usedNumbers_list):
     return True
 
 
+def check_actual_max_number(romanNumber):
+    max_value = 1000
+    for i in range(0, len(romanNumber)):
+        current_element = romanNumber[i]
+        next_element = ""
+        if(i+1 < len(romanNumber)):
+            next_element = romanNumber[i+1]
+        if roman_dict[current_element] > max_value:
+            return False
+        if roman_dict[current_element] < max_value:
+            # check if the next value is substractible canSubstract funkciu sprav
+            if not can_subtract(current_element, next_element):
+                max_value = roman_dict[current_element]
+    return True
+
+
+def can_subtract(current, next):
+    if next == "":
+        return False
+    if roman_dict[current] < roman_dict[next]:
+        if current in ["V", "L", "D"]:
+            return False
+        if current == "I" and (next in ["V", "X"]):
+            return True
+        if current == "X" and (next in ["L", "C"]):
+            return True
+        if current == "C" and (next in ["D", "M"]):
+            return True
+
+    return False
+
+
 # Main function to convert roman to INT
 def convert_to_int(romanNumber):
     if str != type(romanNumber):
@@ -157,33 +190,23 @@ def convert_to_int(romanNumber):
     return sum
 
 
-def check_actual_max_number(romanNumber):
-    max_value = 1000
-    for i in range(0, len(romanNumber)):
-        current_element = romanNumber[i]
-        next_element = ""
-        if(i+1 < len(romanNumber)):
-            next_element = romanNumber[i+1]
-        if roman_dict[current_element] > max_value:
-            return False
-        if roman_dict[current_element] < max_value:
-            # check if the next value is substractible canSubstract funkciu sprav
-            if not can_subtract(current_element, next_element):
-                max_value = roman_dict[current_element]
-    return True
+def convert_to_roman(num):
 
+    m = ["", "M", "MM", "MMM"]
+    c = ["", "C", "CC", "CCC", "CD", "D",
+         "DC", "DCC", "DCCC", "CM "]
+    x = ["", "X", "XX", "XXX", "XL", "L",
+         "LX", "LXX", "LXXX", "XC"]
+    i = ["", "I", "II", "III", "IV", "V",
+         "VI", "VII", "VIII", "IX"]
 
-def can_subtract(current, next):
-    if next == "":
-        return False
-    if roman_dict[current] < roman_dict[next]:
-        if current in ["V", "L", "D"]:
-            return False
-        if current == "I" and (next in ["V", "X"]):
-            return True
-        if current == "X" and (next in ["L", "C"]):
-            return True
-        if current == "C" and (next in ["D", "M"]):
-            return True
+    # Converting to roman
+    thousands = m[num // 1000]
+    hundreds = c[(num % 1000) // 100]
+    tens = x[(num % 100) // 10]
+    ones = i[num % 10]
 
-    return False
+    result = (thousands + hundreds +
+              tens + ones)
+
+    return result
