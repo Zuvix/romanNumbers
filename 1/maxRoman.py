@@ -34,6 +34,9 @@ def find_max(alphabet):
                     return final_sequence
             else:
                 return final_sequence
+        if index % 2 == 1:
+            final_sequence += alphabet[index]
+            index -= 1
 
 
 print(find_max("IVXLCDM"))
