@@ -96,6 +96,9 @@ class TestRomanConverterAndCalculator(unittest.TestCase):
     def test30_conversion(self): 
         self.assertEqual(roman.convert_to_int("MCDLXXXVIII"), 1488)
 
+    def test31_conversion(self): 
+        self.assertEqual(roman.convert_to_int("IXV"), -9999)
+
     #Tests for function "roman_calculator"
     def test1_calculator(self): 
         self.assertEqual(calculator.roman_calculator("M I"), "Wrong input")
@@ -150,6 +153,9 @@ class TestRomanConverterAndCalculator(unittest.TestCase):
 
     def test18_calculator(self): 
         self.assertEqual(calculator.roman_calculator("MMM + M"), "Wrong number")
+    
+    def test19_calculator(self): 
+        self.assertEqual(calculator.roman_calculator("IXV + I"), "Wrong input")
     
 
 # Run tests

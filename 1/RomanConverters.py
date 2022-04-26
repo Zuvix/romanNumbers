@@ -63,8 +63,8 @@ def validate_roman_elements(romanNumber):
     return True
 
 
-def check_used_numbers(element, usedNumbers_list):
-    for item in usedNumbers_list:
+def check_numbers_list(element, numbers_list):
+    for item in numbers_list:
         if roman_dict[element] >= roman_dict[item]:
             return False
 
@@ -142,7 +142,7 @@ def convert_to_int(romanNumber):
             i += 1
             continue
 
-        if check_used_numbers(element, usedNumbers_list) == False:
+        if check_numbers_list(element, usedNumbers_list) == False:
             return INCORRECT_NUMBER
 
         if roman_dict[prevElement] < roman_dict[element]:
@@ -159,7 +159,7 @@ def convert_to_int(romanNumber):
             repetition = True
         elif (roman_dict[prevElement] > roman_dict[element]) and repetition:
             repetition = False
-        elif element in subtractedNumbers_list:
+        elif check_numbers_list(element, subtractedNumbers_list) == False:
             return INCORRECT_NUMBER
 
         sum += roman_dict[element]
