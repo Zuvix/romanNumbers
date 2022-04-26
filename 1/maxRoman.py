@@ -7,7 +7,7 @@ def set_alphabet(alphabet):
     index = 0
     global roman_dict
     for letter in alphabet:
-        roman_dict[current_value] = letter
+        roman_dict[letter] = current_value
         if index % 2 == 0:
             current_value *= 5
         else:
@@ -22,15 +22,15 @@ def find_max(alphabet):
     final_sequence = ""
     while(index >= 0):
         if index % 2 == 0:
-            if roman_dict[index] not in final_sequence:
+            if roman_dict[alphabet[index]] not in final_sequence:
                 final_sequence += roman_dict[index]*3
             if index > 0:
                 if index-2 >= 0:
-                    final_sequence += roman_dict[index-2]
-                    final_sequence += roman_dict[index]
+                    final_sequence += roman_dict[alphabet[index-2]]
+                    final_sequence += roman_dict[alphabet[index]]
                     index = index-2
                 elif index-1 >= 0:
-                    final_sequence += roman_dict[index-1]
+                    final_sequence += roman_dict[alphabet[index-1]]
                     return final_sequence
             else:
                 return final_sequence
