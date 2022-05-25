@@ -93,13 +93,30 @@ class RomanNumberFull:
             return self.zeroChar
         if self.value < 0:
             non_negative_value = abs(self.value)
-            return "-"+roman.romanToNumber(self.value)
-        return roman.romanToNumber(self.value)
+            return "-"+roman.romanToNumber(self.alphabet, self.value)
+        return roman.romanToNumber(self.alphabet, self.value)
 
-    def setRomanNumber(self):
-        roman.set_roman_letters(self.alphabet)
+    def setRomanNumber(self, value):
+        if value == self.zeroChar:
+            self.value = 0
+            return True
+        if "-" in value:
+            value = value[1:]
+            test_value = roman.romanToNumber(self.alphabet, value)
+            if test_value == roman.INCORRECT_NUMBER:
+                return False
+            self.value *= -1
+            return True
+
+        testNumber = roman.romanToNumber(self.alphabet, value)
+        if(testNumber == roman.INCORRECT_NUMBER):
+            return False
+        self.value = testNumber
+        return True
 
 
 x = RomanNumber("IS")
 print(x.maxNumber())
 print(x.romanLetters())
+y = RomanNumberFull("OI")
+print(y.setRomanNumber("-I"))
