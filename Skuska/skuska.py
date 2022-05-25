@@ -1,5 +1,7 @@
+from tkinter.tix import INTEGER
 import RomanToNumberConverter as roman
 import MaxNumberFromRoman as maxRoman
+from Skuska.Calculator import MAX_NUMBER
 DEFINED_ALPHABET = "IVXLCDM"
 DEFINED_ZERO_ALPHABET = "OIVXLCDM"
 
@@ -64,7 +66,7 @@ class RomanNumber:
 
 class RomanNumberFull:
     # Public methodes and Constructor
-    def __init__(self, romanLetters=DEFINED_ZERO_ALPHABET):
+    def __init__(self, romanLetters=DEFINED_ZERO_ALPHABET, max=MAX_NUMBER):
         self.alphabet = check_alphabet(romanLetters, True)
         self.value = 0
         self.zeroChar = self.alphabet[0]
