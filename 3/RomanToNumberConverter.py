@@ -3,7 +3,6 @@ from collections import OrderedDict
 
 
 INCORRECT_NUMBER = -9999
-MAX_NUMBER = 3999
 
 roman_dict = OrderedDict()
 
@@ -12,6 +11,7 @@ def set_roman_letters(romanLetters):
     current_value = 1
     index = 0
     global roman_dict
+    roman_dict = OrderedDict() #reset roman_dict
 
     for letter in romanLetters:
         roman_dict[letter] = current_value
@@ -138,23 +138,14 @@ def can_subtract(current, next):
     return False
 
 # Main function to convert roman to number
-def convert_to_int(romanLetters, romanNumber):
-    if (str != type(romanLetters)) or (str != type(romanNumber)):
+def convert_to_int(romanNumber):
+    if str != type(romanNumber):
         return INCORRECT_NUMBER
 
     romanNumber = romanNumber.strip()
-    romanLetters = romanLetters.strip()
 
-    if (len(romanLetters) == 0) or (len(romanNumber) == 0):
+    if len(romanNumber) == 0:
         return INCORRECT_NUMBER
-
-    if validate_roman_letters(romanLetters) == False:#
-        return INCORRECT_NUMBER
-
-    if check_roman_letters_for_unique_letters(romanLetters) == False:#
-        return INCORRECT_NUMBER
-
-    set_roman_letters(romanLetters) #
 
     if validate_roman_number_elements(romanNumber) == False:
         return INCORRECT_NUMBER
@@ -204,8 +195,6 @@ def convert_to_int(romanLetters, romanNumber):
         sum += roman_dict[element]
         prevElement = element
 
-    if sum > MAX_NUMBER:
-        return INCORRECT_NUMBER
     return sum
 
 
@@ -215,15 +204,17 @@ def romanToNumber(romanLetters, romanNumber):
 
     romanLetters = romanLetters.strip()
 
-    if (len(romanLetters) == 0)
+    if len(romanLetters) == 0:
         return INCORRECT_NUMBER
 
-    if validate_roman_letters(romanLetters) == False:#
+    if validate_roman_letters(romanLetters) == False:
         return INCORRECT_NUMBER
 
-    if check_roman_letters_for_unique_letters(romanLetters) == False:#
+    if check_roman_letters_for_unique_letters(romanLetters) == False:
         return INCORRECT_NUMBER
 
-    set_roman_letters(romanLetters) #
+    set_roman_letters(romanLetters)
+
+    return convert_to_int(romanNumber)
 
 

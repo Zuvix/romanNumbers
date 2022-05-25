@@ -2,12 +2,12 @@ import unittest
 import RomanToNumberConverter as roman
 import MaxNumberFromRoman as maxRoman
 
-# Testing section for functions "romanToNumber"
-
+# Testing section for functions "romanToNumber" and "maxNumberFromRomanLetters"
 
 class TestRomanConverterAndMaxNumberFromRoman(unittest.TestCase):
 
     # Tests for function "romanToNumber"
+    # Old tests for converter"
     def test1_conversion(self):
         self.assertEqual(roman.romanToNumber("IVXLCDM", "I"), 1)
 
@@ -101,35 +101,77 @@ class TestRomanConverterAndMaxNumberFromRoman(unittest.TestCase):
     def test31_conversion(self):
         self.assertEqual(roman.romanToNumber("IVXLCDM", "IXV"), -9999)
 
-    # Tests for function "max Roman"
-    def test32_romanMax(self):
+    # New tests for converter"
+
+    def test32_conversion(self):
+        self.assertEqual(roman.romanToNumber("IV", "VIII"), 8)
+    
+    def test33_conversion(self):
+        self.assertEqual(roman.romanToNumber("AKBA", "AK"), -9999)
+    
+    def test34_conversion(self):
+        self.assertEqual(roman.romanToNumber("", "MMM"), -9999)
+
+    def test35_conversion(self):
+        self.assertEqual(roman.romanToNumber("TYQW", ""), -9999)
+
+    def test36_conversion(self):
+        self.assertEqual(roman.romanToNumber(None, "I"), -9999)
+
+    def test37_conversion(self):
+        self.assertEqual(roman.romanToNumber("ABCdE", "BC"), -9999)
+
+    def test38_conversion(self):
+        self.assertEqual(roman.romanToNumber(" ABCDE  ", "EEEDAC"), 359)
+
+    def test39_conversion(self):
+        self.assertEqual(roman.romanToNumber("@?W", "@@"), -9999)
+
+    def test40_conversion(self):
+        self.assertEqual(roman.romanToNumber("I", "IV") , -9999)
+
+    def test41_conversion(self):
+        self.assertEqual(roman.romanToNumber("IAVXLCQDM", "QVA") , 1015)
+
+    def test42_conversion(self):
+        self.assertEqual(roman.romanToNumber("IVXLCDMPQRS", "SSS") , 300000)
+    
+
+    # Tests for function "maxNumberFromRomanLetters"
+    def test1_romanMax(self):
         self.assertEqual(maxRoman.maxNumberFromRomanLetters("I"), 3)
 
-    def test33_romanMax(self):
+    def test2_romanMax(self):
         self.assertEqual(maxRoman.maxNumberFromRomanLetters("A"), 3)
 
-    def test34_romanMax(self):
+    def test3_romanMax(self):
+        self.assertEqual(maxRoman.maxNumberFromRomanLetters("IV+"), -9999)
+
+    def test4_romanMax(self):
         self.assertEqual(maxRoman.maxNumberFromRomanLetters("IV"), 8)
 
-    def test35_romanMax(self):
+    def test5_romanMax(self):
         self.assertEqual(maxRoman.maxNumberFromRomanLetters("ABC"), 39)
 
-    def test36_romanMax(self):
+    def test6_romanMax(self):
+        self.assertEqual(maxRoman.maxNumberFromRomanLetters("ABKW"), 89)
+
+    def test7_romanMax(self):
         self.assertEqual(maxRoman.maxNumberFromRomanLetters("VI"), 8)
 
-    def test37_romanMax(self):
+    def test8_romanMax(self):
         self.assertEqual(maxRoman.maxNumberFromRomanLetters("IVXLCDM"), 3999)
 
-    def test37_romanMax(self):
+    def test9_romanMax(self):
         self.assertEqual(maxRoman.maxNumberFromRomanLetters("IVXLCDMK"), 8999)
 
-    def test38_romanMax(self):
+    def test10_romanMax(self):
         self.assertEqual(maxRoman.maxNumberFromRomanLetters(""), -9999)
 
-    def test39_romanMax(self):
+    def test11_romanMax(self):
         self.assertEqual(maxRoman.maxNumberFromRomanLetters("ABABA"), -9999)
 
-    def test40_romanMax(self):
+    def test12_romanMax(self):
         self.assertEqual(maxRoman.maxNumberFromRomanLetters("QWERT"), 399)
 
 
