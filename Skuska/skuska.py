@@ -10,6 +10,7 @@ def check_alphabet(romanLetters, hasZero):
         default_alphabet = DEFINED_ZERO_ALPHABET
     else:
         default_alphabet = DEFINED_ALPHABET
+
     if (str != type(romanLetters)):
         return default_alphabet
 
@@ -28,7 +29,7 @@ def check_alphabet(romanLetters, hasZero):
 
 
 class RomanNumber:
-    def __init__(self, romanLetters):
+    def __init__(self, romanLetters=DEFINED_ALPHABET):
         self.alphabet = check_alphabet(romanLetters, False)
         self.value = 0
 
@@ -62,7 +63,7 @@ class RomanNumber:
 
 class RomanNumberFull:
     # Public methodes and Constructor
-    def __init__(self, romanLetters):
+    def __init__(self, romanLetters=DEFINED_ZERO_ALPHABET):
         self.alphabet = check_alphabet(romanLetters, True)
         self.value = 0
         self.zeroChar = romanLetters[0]
@@ -84,3 +85,4 @@ class RomanNumberFull:
 x = RomanNumber("IS")
 print(x.maxNumber())
 print(x.romanLetters())
+print(x.setValue(0))
