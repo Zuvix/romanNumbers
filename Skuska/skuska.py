@@ -58,7 +58,7 @@ class RomanNumber:
 
     def getRomanNumber(self):
         roman.set_roman_letters(self.alphabet)
-        return roman.convert_to_int(self.value)
+        return roman.romanToNumber(self.value)
 
 
 class RomanNumberFull:
@@ -75,14 +75,24 @@ class RomanNumberFull:
     def minimum(self):
         return -1*maxRoman.maxNumberFromRomanLetters(self.alphabet)
 
-    def setvalue(self, value):
+    def setValue(self, value):
         if value > self.maximum() or value < self.minimum():
             return False
         self.value = value
         return True
 
+    def getValue(self):
+        return self.value
+
+    def getRomanNumber(self):
+        roman.set_roman_letters(self.alphabet)
+        if self.value == 0:
+            return self.zeroChar
+        if self.value < 0:
+            non_negative_value = abs(self.value)
+            return "-"+roman.num
+
 
 x = RomanNumber("IS")
 print(x.maxNumber())
 print(x.romanLetters())
-print(x.setValue(0))
