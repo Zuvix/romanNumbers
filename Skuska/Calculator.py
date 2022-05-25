@@ -1,4 +1,4 @@
-import RomanConverters as roman
+import RomanToNumberConverter as roman
 
 WRONG_INPUT = "Wrong input"
 WRONG_NUMBER = "Wrong number"
@@ -35,7 +35,7 @@ def roman_calculator(expression):
         if element in operator_list:
             operator = element
             break
-    
+
     if operator == "":
         return WRONG_INPUT
 
@@ -44,7 +44,7 @@ def roman_calculator(expression):
 
     if operands_length < 2 or operands_length > 2:
         return WRONG_INPUT
-    
+
     roman_val1 = operands[0]
     roman_val2 = operands[1]
     int_val1 = roman.convert_to_int(roman_val1)
