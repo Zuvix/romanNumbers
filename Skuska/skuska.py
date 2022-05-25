@@ -52,16 +52,14 @@ class RomanNumber:
         return self.value
 
     def setRomanNumber(self, romanNumber):
-        roman.set_roman_letters(self.alphabet)
-        testNumber = roman.convert_to_int(romanNumber)
+        testNumber = roman.romanToNumber(self.alphabet, romanNumber)
         if(testNumber == roman.INCORRECT_NUMBER):
             return False
         self.value = testNumber
         return True
 
     def getRomanNumber(self):
-        roman.set_roman_letters(self.alphabet)
-        return roman.romanToNumber(self.value)
+        return roman.romanToNumber(self.alphabet, self.value)
 
 
 class RomanNumberFull:
