@@ -66,8 +66,8 @@ class RomanNumberFull:
     def __init__(self, romanLetters=DEFINED_ZERO_ALPHABET):
         self.alphabet = check_alphabet(romanLetters, True)
         self.value = 0
-        self.zeroChar = romanLetters[0]
-        self.alphabet = self.romanLetters[1:]
+        self.zeroChar = self.alphabet[0]
+        self.alphabet = self.alphabet[1:]
 
     def maximum(self):
         return maxRoman.maxNumberFromRomanLetters(self.alphabet)
