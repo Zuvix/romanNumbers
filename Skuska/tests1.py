@@ -50,7 +50,7 @@ class Testy_uloha1(unittest.TestCase):
         self.assertEqual(roman.maxNumber(), 39999)
 
     def test_IVXLCDM_3896(self): 
-        roman = sk.RomanNumber
+        roman = sk.RomanNumber()
         roman.setValue(3896)
         self.assertEqual(roman.getValue(), 3896)
 
@@ -60,15 +60,15 @@ class Testy_uloha1(unittest.TestCase):
         self.assertEqual(roman.getValue(), 3)
 
     def test_IVXLCDM_0(self): 
-        roman = sk.RomanNumber
+        roman = sk.RomanNumber()
         self.assertFalse(roman.setValue(0))
 
     def test_IVXLCDM_NO_NUMBER(self): 
-        roman = sk.RomanNumber
+        roman = sk.RomanNumber()
         self.assertEqual(roman.getValue(), 0)
 
     def test_IVXLCDM_NO_NUMBER_MAX(self): 
-        roman = sk.RomanNumber
+        roman = sk.RomanNumber()
         self.assertFalse(roman.setValue(4000))
         self.assertEqual(roman.getValue(), 0)
 
