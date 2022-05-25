@@ -1,7 +1,10 @@
+import RomanToNumberConverter as roman
+import MaxNumberFromRoman as maxRoman
 DEFINED_ALPHABET = "IVXLCDM"
 
 
 class RomanNumber:
+    # Public methodes and Constructor
     def __init__(self, romanLetters):
         self.romanLetters = self.check_alphabet(romanLetters)
         self.value = 0
@@ -10,7 +13,17 @@ class RomanNumber:
         return self.romanLetters
 
     def maxNumber(self):
-        return
+        return maxRoman.maxNumberFromRomanLetters(self.romanLetters)
+
+    def setValue(self, value):
+        if value > self.maxNubmer() or value <= 0:
+            return False
+        self.value = value
+        return True
+        # Prviate methodes
+
+    def getValue(self):
+        return self.value
 
     def check_alphabet(self, romanLetters):
         if (str != type(romanLetters)):
@@ -21,24 +34,8 @@ class RomanNumber:
         if (len(romanLetters) == 0):
             return DEFINED_ALPHABET
 
-        if self.validate_roman_letters(romanLetters) == False:
+        if roman.validate_roman_letters(romanLetters) == False:
             return DEFINED_ALPHABET
 
-        if self.check_roman_letters_for_unique_letters(romanLetters) == False:
+        if roman.check_roman_letters_for_unique_letters(romanLetters) == False:
             return DEFINED_ALPHABET
-
-    def validate_roman_letters(self, romanLetters):
-        if romanLetters.isalpha():
-            if romanLetters.isupper():
-                return True
-        return False
-
-    def check_roman_letters_for_unique_letters(self, romanLetters):
-        duplicates = []
-
-        for letter in romanLetters:
-            if letter not in duplicates:
-                duplicates.append(letter)
-            else:
-                return False
-        return True
