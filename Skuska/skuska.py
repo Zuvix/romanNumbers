@@ -90,7 +90,7 @@ class RomanNumberFull:
             return self.zeroChar
         if self.value < 0:
             non_negative_value = abs(self.value)
-            return "-"+roman.number
+            return "-"+roman.integerToRoman(self.alphabet, self.value)
         return roman.integerToRoman(self.alphabet, self.value)
 
     def setRomanNumber(self, value):
