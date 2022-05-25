@@ -91,7 +91,7 @@ class Testy_uloha3(unittest.TestCase):
     #Class RomanNumberFull
     #Set roman number
     def test_IVXLCDM_MMMDCCCXCIV_Zero(self): 
-        roman = sk.RomanNumberFull
+        roman = sk.RomanNumberFull()
         roman.setRomanNumber("MMMDCCCXCIV")
         self.assertEqual(roman.getValue(), 3894)
 
@@ -135,7 +135,7 @@ class Testy_uloha3(unittest.TestCase):
         self.assertEqual(roman.getRomanNumber(), "ZUUUTSSSRQMPCCCXXIV")
 
     def test_IVXLCDM_3896_Zero(self): 
-        roman = sk.RomanNumberFull
+        roman = sk.RomanNumberFull()
         roman.setValue(-3896)
         self.assertEqual(roman.getRomanNumber(), "-MMMDCCCXCVI")
 
