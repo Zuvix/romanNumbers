@@ -260,4 +260,6 @@ def integerToRoman(alphabet, value):
     return res
 
 
+set_roman_letters("IVXLCDM")
+print(integerToRoman("IVXLCDM", 3896))
 # Driver code
