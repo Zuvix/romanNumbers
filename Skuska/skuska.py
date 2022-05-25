@@ -59,7 +59,7 @@ class RomanNumber:
         return True
 
     def getRomanNumber(self):
-        return roman.romanToNumber(self.alphabet, self.value)
+        return roman.integerToRoman(self.alphabet, self.value)
 
 
 class RomanNumberFull:
@@ -90,8 +90,8 @@ class RomanNumberFull:
             return self.zeroChar
         if self.value < 0:
             non_negative_value = abs(self.value)
-            return "-"+roman.romanToNumber(self.alphabet, self.value)
-        return roman.romanToNumber(self.alphabet, self.value)
+            return "-"+roman.number
+        return roman.integerToRoman(self.alphabet, self.value)
 
     def setRomanNumber(self, value):
         if value == self.zeroChar:
@@ -112,8 +112,18 @@ class RomanNumberFull:
         return True
 
 
-x = RomanNumber("IS")
-print(x.maxNumber())
-print(x.romanLetters())
-y = RomanNumberFull("OI")
-print(y.setRomanNumber("-I"))
+roman.set_roman_letters("IVM")
+print(roman.roman_dict)
+romansDict = \
+    {
+        1: "I",
+        5: "V",
+        10: "X",
+        50: "L",
+        100: "C",
+        500: "D",
+        1000: "M",
+        5000: "G",
+        10000: "H"
+    }
+print(romansDict)

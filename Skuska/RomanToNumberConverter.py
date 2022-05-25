@@ -1,5 +1,6 @@
 # MADE by Filip Novak and Samuel Kubala
 from collections import OrderedDict
+import math
 
 
 INCORRECT_NUMBER = -9999
@@ -11,7 +12,7 @@ def set_roman_letters(romanLetters):
     current_value = 1
     index = 0
     global roman_dict
-    roman_dict = OrderedDict() #reset roman_dict
+    roman_dict = OrderedDict()  # reset roman_dict
 
     for letter in romanLetters:
         roman_dict[letter] = current_value
@@ -41,6 +42,8 @@ def check_roman_letters_for_unique_letters(romanLetters):
     return True
 
 # Function to check if there is a forbidden repetition of characters
+
+
 def check_more_than_three_consecutive_chars(romanNumber):
     key_list = list(roman_dict.keys())
 
@@ -85,6 +88,8 @@ def check_max_count_per_char(romanNumber):
     return True
 
 # Check for invalid characters
+
+
 def validate_roman_number_elements(romanNumber):
     for element in romanNumber:
         if element not in roman_dict:
@@ -103,7 +108,7 @@ def check_number_order(romanNumber):
     last_key = list(roman_dict)[-1]
     max_value = roman_dict[last_key]
     romanNumber_length = len(romanNumber)
-    
+
     for i in range(0, romanNumber_length):
         current_element = romanNumber[i]
         next_element = ""
@@ -134,10 +139,12 @@ def can_subtract(current, next):
 
         if (next_index == current_index + 1) or (next_index == current_index + 2):
             return True
-        
+
     return False
 
 # Main function to convert roman to number
+
+
 def convert_to_int(romanNumber):
     if str != type(romanNumber):
         return INCORRECT_NUMBER
@@ -218,3 +225,39 @@ def romanToNumber(romanLetters, romanNumber):
     return convert_to_int(romanNumber)
 
 
+def integerToRoman(alphabet, value):
+    set_roman_letters(alphabet)
+    reverseDict = OrderedDict()
+    for key in roman_dict:
+        reverseDict[roman_dict[key]] = key
+    div = 1
+    while value >= div:
+        div *= 10
+
+    div /= 10
+
+    res = ""
+
+    while value:
+
+        lastNum = int(value / div)
+
+        if lastNum <= 3:
+            res += (reverseDict[div] * lastNum)
+        elif lastNum == 4:
+            res += (reverseDict[div] +
+                    reverseDict[div * 5])
+        elif 5 <= lastNum <= 8:
+            res += (reverseDict[div * 5] +
+                    (reverseDict[div] * (lastNum - 5)))
+        elif lastNum == 9:
+            res += (reverseDict[div] +
+                    reverseDict[div * 10])
+
+        value = math.floor(value % div)
+        div /= 10
+
+    return res
+
+
+# Driver code
