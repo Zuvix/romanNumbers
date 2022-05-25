@@ -88,7 +88,6 @@ class RomanNumberFull:
         return self.value
 
     def getRomanNumber(self):
-        roman.set_roman_letters(self.alphabet)
         if self.value == 0:
             return self.zeroChar
         if self.value < 0:
