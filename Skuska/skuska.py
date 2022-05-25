@@ -93,6 +93,9 @@ class RomanNumberFull:
             return "-"+roman.romanToNumber(self.value)
         return roman.romanToNumber(self.value)
 
+    def setRomanNumber(self):
+        roman.set_roman_letters(self.alphabet)
+
 
 x = RomanNumber("IS")
 print(x.maxNumber())
