@@ -16,7 +16,10 @@ def check_alphabet(romanLetters, hasZero):
 
     romanLetters = romanLetters.strip()
 
-    if (len(romanLetters) == 0):
+    if (len(romanLetters) == 0 and not hasZero):
+        return default_alphabet
+
+    if (len(romanLetters) < 2 and hasZero):
         return default_alphabet
 
     if roman.validate_roman_letters(romanLetters) == False:
