@@ -228,14 +228,15 @@ def romanToNumber(romanLetters, romanNumber):
 def integerToRoman(alphabet, value):
     set_roman_letters(alphabet)
     reverseDict = OrderedDict()
+
     for key in roman_dict:
         reverseDict[roman_dict[key]] = key
+
     div = 1
     while value >= div:
         div *= 10
 
     div /= 10
-
     res = ""
 
     while value:
@@ -260,6 +261,4 @@ def integerToRoman(alphabet, value):
     return res
 
 
-set_roman_letters("IVXLCDM")
-print(integerToRoman("IVXLCDM", 3896))
-# Driver code
+

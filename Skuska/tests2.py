@@ -1,13 +1,10 @@
 import unittest
 import RomanToNumberConverter as roman
 import MaxNumberFromRoman as maxRoman
-import skuska as sk
+import SkuskaMain as sk
 
 
 class Testy_uloha2(unittest.TestCase):
-
-    #def test_Abeceda_I(self):
-        #self.assertEqual(roman.romanToNumber("IVXLCDM", "I"(self)::, 1(self)::
 
     def test_IVXLCDM_1_Zero(self):
         roman = sk.RomanNumberFull()

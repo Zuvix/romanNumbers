@@ -3,6 +3,8 @@ import RomanToNumberConverter as roman
 WRONG_INPUT = "Wrong input"
 WRONG_NUMBER = "Wrong number"
 INCORRECT_NUMBER = -9999
+MIN_NUMBER = 1
+MAX_NUMBER = 3999
 
 operator_list = ['+', '-', '*', '/']
 
@@ -53,12 +55,9 @@ def roman_calculator(expression):
     if int_val2 == INCORRECT_NUMBER:
         return WRONG_INPUT
 
-    if int_val2 == 0 and operator == '/':
-        return WRONG_INPUT
-
     result = compute_expression(int_val1, int_val2, operator)
-    #if result < MIN_NUMBER or result > MAX_NUMBER:
-    #    return WRONG_NUMBER
+    if result < MIN_NUMBER or result > MAX_NUMBER:
+        return WRONG_NUMBER
 
-    #roman_result = roman.convert_to_roman(result)
-    return result
+    roman_result = roman.convert_to_roman(result)
+    return roman_result
